@@ -1,6 +1,8 @@
 from setuptools import find_packages, setup
+import os
+from glob import glob
 
-package_name = 'prm_2025'
+package_name = 'prm'
 
 setup(
     name=package_name,
@@ -10,17 +12,18 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        (os.path.join('share', package_name, 'launch'), glob('launch/*.py')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='machado',
-    maintainer_email='machado@todo.todo',
-    description='Este pacote foi desenvolvido durante a disciplina de programação de robôs móveis',
+    maintainer_email='matheus.m.santos@icmc.usp.br',
+    description='Pacote da disciplina SSC0712: Programação de Robôs Móveis',
     license='Apache-2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'controle_tartaruga = prm_2025.tartaruga:main',
+            'tartaruga = prm.controle_tartaruga:main'
         ],
     },
 )
